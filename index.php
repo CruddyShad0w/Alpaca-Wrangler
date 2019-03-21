@@ -59,17 +59,14 @@
                       </select>
                 </div>
                 <div class="col">
-                    <input  class="form-control"  id="key" placeholder="Key Id">
+                    <input  class="form-control" type = "username"  id="key" placeholder="Key Id">
                 </div>
                 <div class="col">
-                    <input  class="form-control"  id="secret" placeholder="Secret Key">
+                    <input  class="form-control" type ="password" id="secret" placeholder="Secret Key">
                 </div>
                 <div class= "col">
                     <button id="submitButton" type="submit" class="btn btn-primary">Log in</button>
                 </div>
-                
-
-                
             </div>
         </form>
     </nav>
