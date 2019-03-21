@@ -3,8 +3,13 @@ An Alpaca integrated stock market monitoring application.
 To start this application will support live monitoring of stocks located in an alpaca portfolio.
 Ideally this application will be able to monitor all values across any time period.
 
+## Alpaca-Wrangler is now LIVE!
+https://alpaca-wrangler.herokuapp.com/
+
+
+### local deployment
 This is meant for deployment to either a C9 enviroment running apache 2 o or Heroku.
-Later renditions of this will be hosted for everyone on a amazon web server.
+
 
 ### Current work by the :goat:
 - [x] Create basic log in index.php.
@@ -14,8 +19,6 @@ Later renditions of this will be hosted for everyone on a amazon web server.
 - [x] Bootstrap Stock chart.
   - Need to make stock chart alpaca native or find better bootstrap.
 - [x] Implement security procedures for api key/password.
-  - Currently stored in user's Session Variables
 - [ ] Add Buy, Sell, Liquidate options.
 - [ ] Create in house stock charts.
-- [ ] Deploy to Heroku.
-
+- [x] Deploy to Heroku.
