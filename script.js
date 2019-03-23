@@ -8,6 +8,8 @@ $("document").ready(function() {
    $("#submitButton").click(
        function(){
            console.log('submit');
+           // Remove existing account-detail cards
+           $('.card').remove();
             $.ajax({
                     type: "POST",
                     url: "backend.php",

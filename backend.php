@@ -119,7 +119,7 @@ session_start();
         }
         if(isset($_GET['account_details'])){
             echo'
-                <div id = "info" class="card border-dark" style="width: 15%;border-width:2px">
+                <div id="currentValue" class="card border-dark" style="width: 15%;border-width:2px">
                     <div class="card-body col-sm" style="background:#131722;">
                     <h5 class="card-title text-muted">Current Value:</h5>
                     <h6 class="card-subtitle mb-2 " style="color:';
@@ -134,7 +134,7 @@ session_start();
                 </div>
             
             
-                <div  id = "info" class="card border-dark" style="width: 15%;border-width:2px">
+                <div id="buyingPower" class="card border-dark" style="width: 15%;border-width:2px">
                     <div class="card-body col-sm" style="background:#131722;">
                     <h5 class="card-title text-muted">Buying Power:</h5>
                     <h6 class="card-subtitle mb-2" style="color:';
@@ -151,7 +151,7 @@ session_start();
             ';
             if($account->pattern_dat_trader){
             echo'
-                <div id = "info" class="card border-dark" style="width: 15%;border-width:2px">
+                <div id="dayTrader" class="card border-dark" style="width: 15%;border-width:2px">
                     <div class="card-body col-sm" style="background:#131722;">
                     <h5 class="card-title " style = "color:red;">Day Trader:</h5>
                     <h6 class="card-subtitle mb-2 " style="color:grey;">'.$account->pattern_day_trader.'</h6>
@@ -160,8 +160,7 @@ session_start();
             ';}
             if($account->trading_blocked){
             echo '
-            
-                <div id = "info" class="card border-dark" style="width: 15%;border-width:2px">
+                <div id="tradingBlocked" class="card border-dark" style="width: 15%;border-width:2px">
                     <div class="card-body col-sm" style="background:#131722;">
                     <h5 class="card-title " style = "color:red;">Trading Blocked:</h5>
                     <h6 class="card-subtitle mb-2 " style="color:grey;">'.$account->trading_blocked.'</h6>
