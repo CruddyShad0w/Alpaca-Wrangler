@@ -41,51 +41,91 @@ session_start();
             array_push($symbols, $positions[$z]->exchange.':'.$positions[$z]->symbol);
         }
             if(isset($_GET['cards'])){
-                echo "<div class = 'row '>";
-                for($k=0; $k<sizeof($symbols);$k++){
-                    $profit = $positions[$k]->market_value - $positions[$k]->cost_basis;
-                    echo '<div class="card border-dark " style="width: 20rem;border-width:2px">
-                        <div class="card-body col-sm" style="background:#131722;">
-                            <!-- TradingView Widget BEGIN -->
-                            <div class="tradingview-widget-container">
-                                <div class="tradingview-widget-container__widget"></div>
-                                <div class="tradingview-widget-copyright"></div>
-                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-                                    {
-                                        "symbol": "'.$symbols[$k].'",
-                                        "width": "275",
-                                        "height": "300",
-                                        "locale": "en",
-                                        "dateRange": "1d",
-                                        "colorTheme": "dark",
-                                        "trendLineColor": "#37a6ef",
-                                        "underLineColor": "rgba(55, 166, 239, 0.15)",
-                                        "isTransparent": false,
-                                        "autosize": false,
-                                        "largeChartUrl": ""
-                                    }
-                                </script>
+                if ($_GET['cards'] == 'large'){
+                    echo "<div class = 'row '>";
+                    for($k=0; $k<sizeof($symbols);$k++){
+                        $profit = $positions[$k]->market_value - $positions[$k]->cost_basis;
+                        echo '<div id = "cards" class="card border-dark " style="width: 20rem;border-width:2px">
+                            <div class="card-body col-sm" style="background:#131722;">
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <div class="tradingview-widget-copyright"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                        {
+                                            "symbol": "'.$symbols[$k].'",
+                                            "width": "275",
+                                            "height": "300",
+                                            "locale": "en",
+                                            "dateRange": "1d",
+                                            "colorTheme": "dark",
+                                            "trendLineColor": "#37a6ef",
+                                            "underLineColor": "rgba(55, 166, 239, 0.15)",
+                                            "isTransparent": false,
+                                            "autosize": false,
+                                            "largeChartUrl": ""
+                                        }
+                                    </script>
+                                </div>
+                                <!-- TradingView Widget END -->
+                                <h6 class="card-subtitle mb-2 text-muted">'.$symbols[$k].'</h6>
+                                <p class="card-text"style="color:grey;">AVG Entry: $'.$positions[$k]->avg_entry_price.'</p>
+                                <p class="card-text" style="color:grey;">Shares: '.$positions[$k]->qty.'</p>
+                                <p class="card-text"style="color:grey;">Market Value: $'.$positions[$k]->market_value.'</p>
+                                <p class="card-text"style="color:';
+                                if($profit>=0){
+                                    echo'#20c997';
+                                }
+                                else{
+                                    echo'#dc3545';
+                                }
+                                echo ';">Total Profit: $'.$profit;
+                                
+                                echo'</p>
+                                
                             </div>
-                            <!-- TradingView Widget END -->
-                            <h6 class="card-subtitle mb-2 text-muted">'.$symbols[$k].'</h6>
-                            <p class="card-text"style="color:grey;">AVG Entry: $'.$positions[$k]->avg_entry_price.'</p>
-                            <p class="card-text" style="color:grey;">Shares: '.$positions[$k]->qty.'</p>
-                            <p class="card-text"style="color:grey;">Market Value: $'.$positions[$k]->market_value.'</p>
-                            <p class="card-text"style="color:';
-                            if($profit>=0){
-                                echo'green';
-                            }
-                            else{
-                                echo'red';
-                            }
-                            echo ';">Total Profit: $'.$profit;
-                            
-                            echo'</p>
-                            
-                        </div>
-                    </div>';
-                }echo"</div>";
+                        </div>';
+                    }echo"</div>";
+                }
+                else if ($_GET['cards'] == 'small'){
+                    echo "<div class = 'row '>";
+                    for($k=0; $k<sizeof($symbols);$k++){
+                        $profit = $positions[$k]->market_value - $positions[$k]->cost_basis;
+                        echo '<div id = "cards" class="card border-dark " style="width: 20rem;border-width:2px">
+                                <div class="card-body col-sm" style="background:#131722;">
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                  <div class="tradingview-widget-container__widget"></div>
+                                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                                  {
+                                  "symbol": "'.$symbols[$k].'",
+                                  "width": 275,
+                                  "locale": "en"
+                                }
+                                  </script>
+                                </div>
+                                <!-- TradingView Widget END -->
+                                <h6 class="card-subtitle mb-2 text-muted">'.$symbols[$k].'</h6>
+                                <p class="card-text"style="color:grey;">AVG Entry: $'.$positions[$k]->avg_entry_price.'</p>
+                                <p class="card-text" style="color:grey;">Shares: '.$positions[$k]->qty.'</p>
+                                <p class="card-text"style="color:grey;">Market Value: $'.$positions[$k]->market_value.'</p>
+                                <p class="card-text"style="color:';
+                                if($profit>=0){
+                                    echo'#20c997';
+                                }
+                                else{
+                                    echo'#dc3545';
+                                }
+                                echo ';">Total Profit: $'.$profit;
+                                
+                                echo'</p>
+                                
+                            </div>
+                        </div>';
+                    }echo"</div>";
+                }
         }
+        
         if(isset($_GET['ticker'])){
             echo '<div class="tradingview-widget-container">';
             echo '<div class="tradingview-widget-container__widget"></div>';
@@ -124,10 +164,10 @@ session_start();
                     <h5 class="card-title text-muted">Current Value:</h5>
                     <h6 class="card-subtitle mb-2 " style="color:';
                     if($account->portfolio_value > 0){
-                        echo 'green';
+                        echo '#20c997';
                     }
                     else{
-                        echo 'red';
+                        echo '#dc3545';
                     }
                     echo'">$'.$account->portfolio_value.'</h6>
                     </div>
@@ -139,10 +179,10 @@ session_start();
                     <h5 class="card-title text-muted">Buying Power:</h5>
                     <h6 class="card-subtitle mb-2" style="color:';
                     if($account->buying_power > 0){
-                        echo 'green';
+                        echo '#20c997';
                     }
                     else{
-                        echo 'red';
+                        echo '#dc3545';
                     }
                     echo '">$'.$account->buying_power.'</h6>
                     </div>
@@ -153,7 +193,7 @@ session_start();
             echo'
                 <div id="dayTrader" class="card border-dark" style="width: 15%;border-width:2px">
                     <div class="card-body col-sm" style="background:#131722;">
-                    <h5 class="card-title " style = "color:red;">Day Trader:</h5>
+                    <h5 class="card-title " style = "color:#dc3545;">Day Trader:</h5>
                     <h6 class="card-subtitle mb-2 " style="color:grey;">'.$account->pattern_day_trader.'</h6>
                     </div>
                 </div>
@@ -162,7 +202,7 @@ session_start();
             echo '
                 <div id="tradingBlocked" class="card border-dark" style="width: 15%;border-width:2px">
                     <div class="card-body col-sm" style="background:#131722;">
-                    <h5 class="card-title " style = "color:red;">Trading Blocked:</h5>
+                    <h5 class="card-title " style = "color:#dc3545;">Trading Blocked:</h5>
                     <h6 class="card-subtitle mb-2 " style="color:grey;">'.$account->trading_blocked.'</h6>
                     </div>
                 </div>

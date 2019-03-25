@@ -95,6 +95,23 @@
             });
         </script>
     </div>
+    <nav class="navbar navbar-dark ">
+        <form>
+            <div class="row"id ="chart_type">
+                <div class="col" style ="width:500px" >
+                      <select class="custom-select mr-sm-2" id="update_type">
+                        <option selected>Chart Type</option>
+                        <option value="ticker">Ticker</option>
+                        <option value="small">Cards small</option>
+                        <option value="large">Cards large</option>
+                      </select>
+                </div>
+                <div class= "col">
+                    <button id="updateButton" type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
+    </nav>
     <div class = ".container-fluid" style = "padding-left:75px; padding-right:75px;">
         
     <div id ="cards" class = ".container-fluid "style = "padding-left:100px; padding-right:50px;">
@@ -103,7 +120,5 @@
   
 <script src="script.js">
 </script>
-<!-- CREDIT SECTION TO TRADING VIEW<script src="script.js">
-</script> -->
 
 </html>
