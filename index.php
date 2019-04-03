@@ -114,7 +114,7 @@
     </nav>
     <div class = ".container-fluid" style = "padding-left:75px; padding-right:75px;">
         
-    <div id ="cards" class = ".container-fluid "style = "padding-left:100px; padding-right:50px;">
+    <div id ="cards" class = ".container-fluid ">
     
     </div>
   

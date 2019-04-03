@@ -21,4 +21,7 @@ This is meant for deployment to either a C9 enviroment running apache 2 o or Her
 - [x] Implement security procedures for api key/password.
 - [ ] Add Buy, Sell, Liquidate options.
 - [ ] Create in house stock charts.
+- [ ] Create intro to algorithims page
+- [ ] Create single stock insight mode
+- [ ] Create "broker" page for simple order monitoring
 - [x] Deploy to Heroku.
