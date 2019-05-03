@@ -40,6 +40,44 @@ session_start();
         for($z=0; $z<sizeof($positions); $z++){
             array_push($symbols, $positions[$z]->exchange.':'.$positions[$z]->symbol);
         }
+        if(isset($_GET['positions_list'])){
+            echo '<div class="col" style ="width:500px" >
+                      <select class="custom-select mr-sm-2" id="single_stock_chosen">
+                      <option selected>Symbol</option>';
+            for ($i=0; $i<sizeof($positions); $i++){
+                echo '<option value="'.$positions[$i]->exchange.":".$positions[$i]->symbol.'">'.$positions[$i]->symbol.'</option>';
+            }
+            echo '
+                      </select>
+                </div>
+                <div class= "col">
+                    <button id="update_single_stock" type="submit" class="btn btn-primary">Update</button>
+                </div>';
+        }
+        if(isset($_GET['largeChart'])){
+            echo '
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container" >
+                <div id="tradingview_23bdd" style="height:40rem; padding:20px;"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget({
+                        "autosize": true,
+                        "symbol": "'.$_GET['largeChart'].'",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "Dark",
+                        "style": "1",
+                        "locale": "en",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "allow_symbol_change": true,
+                        "container_id": "tradingview_23bdd"
+                    });
+                </script>
+            </div>
+            ';
+        }
             if(isset($_GET['cards'])){
                 if ($_GET['cards'] == 'large'){
                     echo "<div class = 'row '>";
@@ -63,7 +101,7 @@ session_start();
                                             "underLineColor": "rgba(55, 166, 239, 0.15)",
                                             "isTransparent": false,
                                             "autosize": false,
-                                            "largeChartUrl": ""
+                                            "largeChartUrl": "#largeChart"
                                         }
                                     </script>
                                 </div>

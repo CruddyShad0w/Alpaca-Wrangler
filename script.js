@@ -55,6 +55,7 @@ function update_cards_large(){
         },
         success: function(data, stats) {
             console.log('success')
+            $("#chart_type2").html('');
             $("#cards").html(data);
 
         },
@@ -77,7 +78,9 @@ function update_cards_small(){
         },
         success: function(data, stats) {
             console.log('success')
+            $("#chart_type2").html('');
             $("#cards").html(data);
+            
 
         },
         error: function(data, stats) {
@@ -89,9 +92,64 @@ function update_cards_small(){
     })
 }
 
+function get_symbols_list(){
+    $.ajax({
+        type: "GET",
+        url: "backend.php",
+        dataType: "html",
+        data: {
+                'positions_list': ' ',
+        },
+        success: function(data, stats) {
+            console.log('success')
+            $("#chart_type2").html(data);
+
+        },
+        error: function(data, stats) {
+            console.log(stats)
+            console.log(data)
+            console.log('error in restapi: get_symbols_list()')
+
+        }
+    })
+}
+
+function get_large_chart(){
+    $.ajax({
+        type: "GET",
+        url: "backend.php",
+        dataType: "html",
+        data: {
+                'largeChart': $("#single_stock_chosen :selected").val(),
+        },
+        success: function(data, stats) {
+            console.log('success')
+            //$("#cards").html(data);
+
+        },
+        error: function(data, stats) {
+            console.log(stats)
+            console.log(data)
+            console.log('error in restapi: get_large_chart()')
+
+        }
+    })
+}
+
 
 
 $("document").ready(function() {
+    
+    $("#update_single_stock").click(
+        function(){
+            get_large_chart()
+            return false;
+        })
+        
+    $("#logOut").click( function(){
+        window.location = "logout.php";
+        return false;
+    })
 
     $("#updateButton").click(
 
@@ -109,6 +167,10 @@ $("document").ready(function() {
             else if ($("#update_type :selected").val() === "small") {
 
                 update_cards_small()
+            }
+            else if($("#update_type :selected").val() === "single"){
+                
+                get_symbols_list()
             }
 
             return false;

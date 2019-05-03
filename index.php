@@ -12,6 +12,8 @@
             margin-right: 20px;
         }
     </style>
+    
+    
 </head>
 
 <body style="background:#212529">
@@ -19,7 +21,7 @@
     <div id="banner">
     <?php
         
-        echo '<div class="tradingview-widget-container">';
+        echo '<div id="largeChart" class="tradingview-widget-container">';
         echo '<div class="tradingview-widget-container__widget"></div>';
             echo "<script type='text/javascript' src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js' async>";
             echo '{
@@ -27,7 +29,7 @@
             
  
             $symbols = array();
-            array_push($symbols, 'INDEX:SPX');
+            array_push($symbols, 'NASDAQ:AAPL');
             
             $strings = array();
             for($i=0; $i< sizeof($symbols); $i++){
@@ -71,6 +73,7 @@
                 </div>
                 <div class= "col">
                     <button id="submitButton" type="submit" class="btn btn-primary">Log in</button>
+                    <button id="logOut" type="submit" class="btn btn-primary" href="logout.php">Log out</button>
                 </div>
             </div>
         </form>
@@ -82,7 +85,7 @@
         <script type="text/javascript">
             new TradingView.widget({
                 "autosize": true,
-                "symbol": "INDEX:SPX",
+                "symbol": "NASDAQ:AAPL",
                 "interval": "D",
                 "timezone": "Etc/UTC",
                 "theme": "Dark",
@@ -97,19 +100,23 @@
     </div>
     <nav class="navbar navbar-dark ">
         <form>
-            <div class="row"id ="chart_type">
+            <div class="row" id ="chart_type">
                 <div class="col" style ="width:500px" >
                       <select class="custom-select mr-sm-2" id="update_type">
                         <option selected>Chart Type</option>
                         <option value="ticker">Ticker</option>
                         <option value="small">Cards small</option>
                         <option value="large">Cards large</option>
+                    <!-- <option value="single">Single Stock</option> -->
                       </select>
                 </div>
                 <div class= "col">
                     <button id="updateButton" type="submit" class="btn btn-primary">Update</button>
                 </div>
+                <div class="row" id ="chart_type2">
             </div>
+            </div>
+            
         </form>
     </nav>
     <div class = ".container-fluid" style = "padding-left:75px; padding-right:75px;">
@@ -117,7 +124,17 @@
     <div id ="cards" class = ".container-fluid ">
     
     </div>
-  
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139556557-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-139556557-1');
+</script>
+ 
 <script src="script.js">
 </script>
 
